@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Login;
 
 use App\Http\Controllers\Controller;
-use App\Models\Usuario;
+use App\Models\UsuarioModel;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 
 class LoginController extends Controller
 {
@@ -24,6 +26,11 @@ class LoginController extends Controller
         return view('Login.index');
     }
 
+    public function inicio()
+    {
+        return redirect(route('login'));
+    }
+
     public function clave()
     {
         return view('Login.Clave.index');
@@ -32,7 +39,7 @@ class LoginController extends Controller
     public function recuperar(Request $request)
     {
         $correo = $request->correo;
-        $usuario = Usuario::where('correo', '=', $correo)->get()[0];
+        $usuario = UsuarioModel::where('correo', '=', $correo)->get()[0];
 
         $pre = md5(md5(env('RECUPERAR')));
         $pro = substr(str_shuffle($pre), 0, 10);
@@ -56,6 +63,23 @@ class LoginController extends Controller
         }
     }
 
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        if ($response = $this->loggedOut($request)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new Response('', 204)
+            : redirect('/login');
+    }
+
     public function username()
     {
         return 'usuario';
@@ -65,11 +89,11 @@ class LoginController extends Controller
     {
          if(session()->get('perfil_id') == 1){
 
-             return view('Perfil1.Dashboard.index');
+             return redirect(route('cliente.index'));
 
          }else if(session()->get('perfil_id') == 2){
 
-             return view('Perfil2.Dashboard.index');
+             return redirect(route('ejecutivo.index'));
          }
     }
 

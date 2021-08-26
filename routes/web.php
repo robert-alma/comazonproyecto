@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Login'], function () {
 
+    Route::get('/', 'LoginController@inicio')->name('inicio');
     #Vista Login
-    Route::get('/', 'LoginController@index')->name('login');
+    Route::get('/login', 'LoginController@index')->name('login');
 
     #Validar credenciales
     Route::post('/login', 'LoginController@login')->name('validar');
@@ -32,5 +33,36 @@ Route::group(['namespace' => 'Login'], function () {
 
     #Bienvenido a tu dashboard
     Route::get('/bienvenido','LoginController@bienvenido')->name('bienvenido');
+
+    #Vista Registro
+    Route::get('/registro', 'RegistroController@index')->name('vistaregistro');
+
+    #Registrar Usuario
+    Route::post('/registro', 'RegistroController@RegistrarUsuario')->name('registro');
+
+});
+
+Route::group(['namespace' => 'Cliente'], function () {
+
+    #Vista Dashboard
+    Route::get('/cliente/dashboard', 'ClienteController@index')->name('cliente.index');
+    #Vista Solicitud
+    Route::get('/solicitar', 'ClienteController@solicitud')->name('cliente.solicitud');
+    #Registrar Solicitud
+    Route::post('/solicitar', 'ClienteController@registrarsolicitud')->name('cliente.registrarsolicitud');
+    #Aceptar Cotizacion
+    Route::get('/solicitar/{id}/aceptar', 'ClienteController@aceptarsolicitud')->name('cliente.aceptarsolicitud');
+    #Rechazar Cotizacion
+    Route::get('/solicitar/{id}/rechazar', 'ClienteController@rechazarsolicitud')->name('cliente.rechazarsolicitud');
+});
+
+Route::group(['namespace' => 'Ejecutivo'], function () {
+
+    #Vista Dashboard
+    Route::get('/ejecutivo/dashboard', 'EjecutivoController@index')->name('ejecutivo.index');
+    #Vista Cotización
+    Route::get('/cotizar/{id}', 'EjecutivoController@cotizacion')->name('ejecutivo.cotizacion');
+    #Registrar Cotización
+    Route::post('/cotizar/{id}', 'EjecutivoController@registrarcotizacion')->name('ejecutivo.registrarcotizacion');
 
 });
