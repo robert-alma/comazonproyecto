@@ -23,14 +23,14 @@
              @endforeach
             <br>
             <label for="usuario">Nombre de Usuario</label>
-            <input type="text" name="usuario"  id="usuario">
+            <input type="text" name="usuario"  id="usuario" value="{{old('usuario')}}">
             @foreach ($errors->get('usuario') as $message)
             {{$message}}
              @endforeach
             <br>
 
             <label for="correo">Correo Electrónico</label>
-            <input type="text" name="correo"  id="correo">
+            <input type="text" name="correo"  id="correo" value="{{old('correo')}}">
             @foreach ($errors->get('correo') as $message)
             {{$message}}
              @endforeach
@@ -42,10 +42,16 @@
             {{$message}}
              @endforeach
             <br>
+            <label for="repassword">Repetir Contraseña</label>
+            <input type="password" name="repassword"  id="repassword">
+            @foreach ($errors->get('repassword') as $message)
+            {{$message}}
+             @endforeach
+            <br>
             <br><br><br><br><br><br>
 
             <br>
-            <label for="sexo_id">Tipo de Documento</label>
+            <label for="sexo_id">Sexo</label>
             <select name="sexo_id" id="sexo_id">
                 <option value="1">Hombre</option>
                 <option value="2">Mujer</option>
@@ -54,19 +60,19 @@
             {{$message}}
              @endforeach
             <label for="nombre">Nombre</label>
-            <input type="text" name="nombre"  id="nombre">
+            <input type="text" name="nombre"  id="nombre" value="{{old('nombre')}}">
             @foreach ($errors->get('nombre') as $message)
             {{$message}}
              @endforeach
             <br>
             <label for="apellido_paterno">Apellido Paterno</label>
-            <input type="text" name="apellido_paterno"  id="apellido_paterno">
+            <input type="text" name="apellido_paterno"  id="apellido_paterno" value="{{old('apellido_paterno')}}">
             @foreach ($errors->get('apellido_paterno') as $message)
             {{$message}}
              @endforeach
             <br>
             <label for="apellido_materno">Apellido Materno</label>
-            <input type="text" name="apellido_materno"  id="apellido_materno">
+            <input type="text" name="apellido_materno"  id="apellido_materno" value="{{old('apellido_materno')}}">
             @foreach ($errors->get('apellido_materno') as $message)
             {{$message}}
              @endforeach
@@ -81,25 +87,25 @@
             {{$message}}
              @endforeach
             <label for="documento">N°Documento</label>
-            <input type="number" name="documento"  id="documento">
+            <input type="number" name="documento"  id="documento" value="{{old('documento')}}">
             @foreach ($errors->get('documento') as $message)
             {{$message}}
              @endforeach
             <br>
             <label for="celular">N°celular</label>
-            <input type="number" name="celular"  id="celular">
+            <input type="number" name="celular"  id="celular" value="{{old('celular')}}">
             @foreach ($errors->get('celular') as $message)
             {{$message}}
              @endforeach
             <br>
             <label for="direccion">direccion</label>
-            <input type="text" name="direccion"  id="direccion">
+            <input type="text" name="direccion"  id="direccion" value="{{old('direccion')}}">
             @foreach ($errors->get('direccion') as $message)
             {{$message}}
              @endforeach
             <br>
             <label for="fecha_nacimiento">fecha_nacimiento</label>
-            <input type="date" name="fecha_nacimiento"  id="fecha_nacimiento">
+            <input type="date" name="fecha_nacimiento"  id="fecha_nacimiento" value="{{old('fecha_nacimiento')}}">
             @foreach ($errors->get('fecha_nacimiento') as $message)
             {{$message}}
              @endforeach

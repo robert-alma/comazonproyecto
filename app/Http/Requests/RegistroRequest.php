@@ -38,7 +38,7 @@ class RegistroRequest extends FormRequest
             'fecha_nacimiento' => 'required|date',
             'empresa_id' => 'required',
             'direccion' => 'required|string',
-            'celular' => 'required|regex:/^([0-9\s\-\+(\)]*$/',
+            'celular' => 'required|regex:/^([0-9\s\-\+(\)]*)$/',
             'ubigeo_id'=> 'required|exists:ubigeos,id',
         ];
     }
@@ -49,7 +49,7 @@ class RegistroRequest extends FormRequest
 
             'usuario.regex'=> 'Caracteres inválidos',
             'usuario.unique'=> 'Usuario en uso',
-
+            'repassword.same'=>'Las contraseñas deben coincidir',
             'correo.unique'=>'Correo en uso',
 
             'password.min'=>'La longitud debe ser mayor a 6 caracteres',
