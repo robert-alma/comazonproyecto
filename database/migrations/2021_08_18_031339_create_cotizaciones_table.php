@@ -28,10 +28,10 @@ class CreateCotizacionesTable extends Migration
             ->references('id')
             ->on('servicios');
             $table->string('fl_estado');
-            $table->integer('cantidad');
-            $table->integer('precio');
-            $table->integer('descuento');
-            $table->integer('total');
+            $table->string('cantidad');
+            $table->string('precio');
+            $table->string('descuento');
+            $table->string('total');
             $table->string('foto');
             $table->timestamps();
         });

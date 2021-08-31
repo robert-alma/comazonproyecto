@@ -19,6 +19,11 @@ class UsuarioModel extends Authenticatable
         return $this->belongsTo(PerfilModel::class);
     }
 
+    public function dato()
+    {
+        return $this->hasOne(DatoModel::class,'usuario_id');
+    }
+
     public function CrearUsuario($request){
         $dataUsuario = array(
             'perfil_id' => $request->perfil_id,

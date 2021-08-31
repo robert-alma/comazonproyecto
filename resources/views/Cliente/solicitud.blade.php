@@ -1,42 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Solicitud</title>
-</head>
-<body>
-    <h1>Bienvenido {{Session::get('usuario')}}</h1>
-    <h2>Registre su Solicitud</h2>
-    <form action="{{route('cliente.registrarsolicitud')}}" method="post">
-        @csrf
-        <label for="asunto">Asunto</label>
-        <input type="text" name="asunto"  id="asunto" value="{{old('asunto')}}">
-        @foreach ($errors->get('asunto') as $message)
-            {{$message}}
-             @endforeach
-        <br>
-        <label for="comentario">Comentario</label>
-        <textarea type="text" name="comentario"  id="comentario" cols="30" rows="10" value="{{old('comentario')}}"></textarea>
-        @foreach ($errors->get('comentario') as $message)
-            {{$message}}
-             @endforeach
-        <br>
-        <label for="presupuesto">Presupuesto</label>
-        <input type="number" name="presupuesto"  id="presupuesto" value="{{old('presupuesto')}}">
-        @foreach ($errors->get('presupuesto') as $message)
-            {{$message}}
-             @endforeach
-        <br>
-        <label for="fecha_entrega">Fecha de Entrega</label>
-        <input type="date" name="fecha_entrega"  id="fecha_entrega" value="{{old('fecha_entrega')}}">
-        @foreach ($errors->get('fecha_entrega') as $message)
-            {{$message}}
-             @endforeach
-        <br>
-        <input type="submit" value="Registrar Solicitud">
+@extends('Cliente.Templates.layout')
+@section('titulo',"Registrar Solicitud")
 
-    </form>
-</body>
-</html>
+@section('content')
+    <div class="container justify-content-center mt-3">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="well well-sm">
+                    <form action="{{route('cliente.registrarsolicitud')}}" method="post" class="form-horizontal" method="post">
+                        @csrf
+                        <fieldset>
+                            <legend class="text-center header">Registra tu Solicitud</legend>
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                                <div class="col">
+                                    <label for="asunto">Asunto</label>
+                                    <input class="form-control" type="text" name="asunto"  id="asunto" placeholder="Coloca aquí el asunto de tu solicitud" value="{{old('asunto')}}">
+                                    @foreach ($errors->get('asunto') as $message)
+                                        {{$message}}
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                                <div class="col">
+                                    <label for="presupuesto">Presupuesto</label>
+                                    <input class="form-control" type="number" name="presupuesto" placeholder="Coloca aquí el presupuesto de proyectos" id="presupuesto" value="{{old('presupuesto')}}">
+                                    @foreach ($errors->get('presupuesto') as $message)
+                                        {{$message}}
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
+                                <div class="col">
+                                    <label for="fecha_entrega">Fecha de Entrega</label>
+                                    <input class="form-control" type="date" name="fecha_entrega" placeholder="La urgencia del proyecto" id="fecha_entrega" value="{{old('fecha_entrega')}}">
+                                    @foreach ($errors->get('fecha_entrega') as $message)
+                                        {{$message}}
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
+                                <div class="col">
+                                    <label for="comentario">Comentario</label>
+                                    <textarea class="form-control" type="text" name="comentario"  id="comentario" cols="30" rows="7" value="{{old('comentario')}}" placeholder="Ingresa el campo de tu solicitud aquí"></textarea>
+                                    @foreach ($errors->get('comentario') as $message)
+                                        {{$message}}
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-primary btn-lg">Enviar Solicitud</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

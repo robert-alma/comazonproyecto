@@ -28,13 +28,13 @@ class CreateDatosTable extends Migration
             $table->foreignId('tipo_documento_id')
             ->references('id')
             ->on('tipo_documento');
-            $table->integer('documento');
+            $table->string('documento');
             $table->string('nombre');
             $table->string('apellido_paterno');
             $table->string('apellido_materno');
             $table->dateTime('fecha_nacimiento');
             $table->string('direccion');
-            $table->integer('celular');
+            $table->string('celular');
             $table->timestamps();
         });
     }

@@ -18,13 +18,13 @@ class CreateEjecutivosTable extends Migration
             $table->foreignId('usuario_id')
             ->references('id')
             ->on('usuarios');
-            $table->integer('valor_neto')->nullable();
-            $table->integer('valor_anual')->nullable();
-            $table->integer('valor_mensual')->nullable();
-            $table->integer('valor_ejecutivo')->nullable();
-            $table->integer('numero_cotizaciones_aceptadas')->nullable();
-            $table->integer('numero_cotizaciones_enviadas')->nullable();
-            $table->integer('numero_quejas')->nullable();
+            $table->string('valor_neto')->nullable();
+            $table->string('valor_anual')->nullable();
+            $table->string('valor_mensual')->nullable();
+            $table->string('valor_ejecutivo')->nullable();
+            $table->string('numero_cotizaciones_aceptadas')->nullable();
+            $table->string('numero_cotizaciones_enviadas')->nullable();
+            $table->string('numero_quejas')->nullable();
             $table->timestamps();
         });
     }

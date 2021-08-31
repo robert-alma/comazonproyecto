@@ -20,7 +20,7 @@ class CreateSolicitudesTable extends Migration
             ->on('clientes');
             $table->string('asunto');
             $table->string('comentario');
-            $table->integer('presupuesto');
+            $table->string('presupuesto');
             $table->dateTime('fecha_entrega');
             $table->timestamps();
         });

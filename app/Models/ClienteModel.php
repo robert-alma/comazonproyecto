@@ -35,6 +35,7 @@ class ClienteModel extends Model
     }
 
 
+
     public function CrearCliente($request,$usuario){
         // $this->valiClienter($request);
         if ($request->perfil_id==1) {

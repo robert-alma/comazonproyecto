@@ -12,9 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/prueba', function () {
-    return view('prueba');
-});
 
 Route::group(['namespace' => 'Login'], function () {
 
@@ -50,13 +47,13 @@ Route::group(['namespace' => 'Cliente'], function () {
     #Vista Dashboard
     Route::get('/cliente/dashboard', 'ClienteController@index')->name('cliente.index');
     #Vista Solicitud
-    Route::get('/solicitar', 'ClienteController@solicitud')->name('cliente.solicitud');
+    Route::get('/cliente/solicitar', 'ClienteController@solicitud')->name('cliente.solicitud');
     #Registrar Solicitud
-    Route::post('/solicitar', 'ClienteController@registrarsolicitud')->name('cliente.registrarsolicitud');
+    Route::post('/cliente/solicitar', 'ClienteController@registrarsolicitud')->name('cliente.registrarsolicitud');
     #Aceptar Cotizacion
-    Route::get('/solicitar/{id}/aceptar', 'ClienteController@aceptarsolicitud')->name('cliente.aceptarsolicitud');
+    Route::get('/cliente/solicitar/{id}/aceptar', 'ClienteController@aceptarsolicitud')->name('cliente.aceptarsolicitud');
     #Rechazar Cotizacion
-    Route::get('/solicitar/{id}/rechazar', 'ClienteController@rechazarsolicitud')->name('cliente.rechazarsolicitud');
+    Route::get('/cliente/solicitar/{id}/rechazar', 'ClienteController@rechazarsolicitud')->name('cliente.rechazarsolicitud');
 });
 
 Route::group(['namespace' => 'Ejecutivo'], function () {
@@ -64,8 +61,10 @@ Route::group(['namespace' => 'Ejecutivo'], function () {
     #Vista Dashboard
     Route::get('/ejecutivo/dashboard', 'EjecutivoController@index')->name('ejecutivo.index');
     #Vista Cotización
-    Route::get('/cotizar/{id}', 'EjecutivoController@cotizacion')->name('ejecutivo.cotizacion');
+    Route::get('/ejecutivo/cotizar/{id}', 'EjecutivoController@cotizacion')->name('ejecutivo.cotizacion');
     #Registrar Cotización
-    Route::post('/cotizar/{id}', 'EjecutivoController@registrarcotizacion')->name('ejecutivo.registrarcotizacion');
+    Route::post('/ejecutivo/cotizar/{id}', 'EjecutivoController@registrarcotizacion')->name('ejecutivo.registrarcotizacion');
+    #Ver Cliente Info
+    Route::get('/ejecutivo/cliente/solicitud/{id}', 'EjecutivoController@vistaclienteinfo')->name('ejecutivo.vercliente');
 
 });

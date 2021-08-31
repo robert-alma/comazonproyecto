@@ -1,28 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login Usuario</title>
-</head>
-<body>
-<h1>Login General</h1>
-<div>
+@extends('Login.Templates.layout')
+@section('titulo',"Login")
 
-    <form action="{{route('validar')}}" method="post">
-        @csrf
-        <label for="usuario">Usuario</label>
-        <input type="text" name="usuario"  id="usuario">
-        <br>
+@section('content')
 
-        <label for="password">Contraseña</label>
-        <input type="password" name="password"  id="password">
-        <br>
-        <input type="submit" value="Login">
-    </form>
 
-    <a href="{{route('vistaregistro')}}">Registrarse</a>
-</div>
-</body>
-</html>
+<div class="container ">
+    <div class="row m-5 justify-content-center align-items-center">
+        <div class="col-10 col-sm-8 col-lg-4 bg-light border border-primary   ">
+            <div>
+                <h1 class="text-center">Login General</h1>
+            </div>
+            <div>
+                <form  id="loginform" action="{{route('validar')}}" method="post">
+                    @csrf
+                    <div class="form-group">
+                        <label class="form-label" for="usuario">Usuario</label>
+                        <input type="text" class="form-control" name="usuario"  id="usuario" value="{{old('usuario')}}">
+                        <div id="emailHelp" class="form-text">Ingresa tu usuario</div>
+                        @foreach ($errors->all() as $message)
+                        {{$message}}
+                        @endforeach
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="password">Contraseña</label>
+                        <input type="password" class="form-control" name="password"  id="password">
+                    </div>
+                    <div class="row p-1">
+                        <div class="col-6 text-center ">
+                            <button form="loginform" type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                        <div class="col-6 text-center ">
+                            <button class="btn btn-primary" type="submit"><a class="text-light" href="{{route('vistaregistro')}}">Registrarse</a></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+ </div>
+
+@endsection
+
+

@@ -32,4 +32,12 @@ class EjecutivoController extends Controller
         $cotizacion->CrearCotizacion($request,$id);
         return $this->cotizacion($id);
     }
+
+    public function vistaclienteinfo($id){
+
+        $solicitud=SolicitudModel::find($id);
+        $cliente=ClienteModel::find($solicitud->cliente_id);
+
+        return view('Ejecutivo.vistaclienteinfo',compact('cliente','solicitud'));
+    }
 }

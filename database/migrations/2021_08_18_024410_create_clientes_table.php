@@ -24,14 +24,14 @@ class CreateClientesTable extends Migration
             $table->foreignId('pago_id')
             ->references('id')
             ->on('pagos');
-            $table->integer('valor_neto')->nullable();
-            $table->integer('valor_anual')->nullable();
-            $table->integer('valor_mensual')->nullable();
-            $table->integer('valor_cliente')->nullable();
-            $table->integer('numero_cotizaciones_aceptadas')->nullable();
-            $table->integer('satisfaccion')->nullable();
-            $table->integer('numero_referidos')->nullable();
-            $table->integer('numero_quejas')->nullable();
+            $table->string('valor_neto')->nullable();
+            $table->string('valor_anual')->nullable();
+            $table->string('valor_mensual')->nullable();
+            $table->string('valor_cliente')->nullable();
+            $table->string('numero_cotizaciones_aceptadas')->nullable();
+            $table->string('satisfaccion')->nullable();
+            $table->string('numero_referidos')->nullable();
+            $table->string('numero_quejas')->nullable();
             $table->timestamps();
         });
     }
