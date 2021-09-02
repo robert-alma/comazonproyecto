@@ -15,5 +15,6 @@ return [
 
     'failed' => 'El nombre de usuario o contraseña es incorrecto',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'required'=>'Los campos no pueden estar vacíos',
 
 ];
