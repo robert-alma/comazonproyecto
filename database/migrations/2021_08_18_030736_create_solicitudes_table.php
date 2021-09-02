@@ -22,6 +22,7 @@ class CreateSolicitudesTable extends Migration
             $table->string('comentario');
             $table->string('presupuesto');
             $table->dateTime('fecha_entrega');
+            $table->string('fl_estado')->nullable();
             $table->timestamps();
         });
     }

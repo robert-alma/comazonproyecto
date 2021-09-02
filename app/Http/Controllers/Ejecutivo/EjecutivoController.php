@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class EjecutivoController extends Controller
 {
     public function index(){
-        $solicitudes['solicitudes']=SolicitudModel::paginate(5);
+        $solicitudes['solicitudes']=SolicitudModel::where('fl_estado','Enviado')->get();
         return view('Ejecutivo.index',$solicitudes);
     }
 
@@ -30,7 +30,10 @@ class EjecutivoController extends Controller
 
         $cotizacion= new CotizacionModel();
         $cotizacion->CrearCotizacion($request,$id);
-        return $this->cotizacion($id);
+        $solicitud = SolicitudModel::find($id);
+        $solicitud->solicitudAtendida($id);
+
+        return redirect(route('ejecutivo.index'));
     }
 
     public function vistaclienteinfo($id){

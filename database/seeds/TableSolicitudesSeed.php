@@ -21,6 +21,7 @@ class TableSolicitudesSeed extends Seeder
                 'comentario' => 'Comentario de Solicitud 1',
                 'presupuesto' => 'Presupuesto de solicitud 1',
                 'fecha_entrega' => \Carbon\Carbon::createFromDate(2000,01,01)->toDateTimeString(),
+                'fl_estado'=>'Enviado',
             ],
             [
                 'cliente_id' => 1,
@@ -28,6 +29,7 @@ class TableSolicitudesSeed extends Seeder
                 'comentario' => 'Comentario de Solicitud 2',
                 'presupuesto' => 'Presupuesto de solicitud 2',
                 'fecha_entrega' => \Carbon\Carbon::createFromDate(2000,01,01)->toDateTimeString(),
+                'fl_estado'=>'Enviado',
             ],
             [
                 'cliente_id' => 1,
@@ -35,6 +37,7 @@ class TableSolicitudesSeed extends Seeder
                 'comentario' => 'Comentario de Solicitud 3',
                 'presupuesto' => 'Presupuesto de solicitud 3',
                 'fecha_entrega' => \Carbon\Carbon::createFromDate(2000,01,01)->toDateTimeString(),
+                'fl_estado'=>'Enviado',
             ],
         ];
 
@@ -45,6 +48,7 @@ class TableSolicitudesSeed extends Seeder
                 'comentario' => $valor['comentario'],
                 'presupuesto' => $valor['presupuesto'],
                 'fecha_entrega' => $valor['fecha_entrega'],
+                'fl_estado' => $valor['fl_estado'],
             ]);
         }
     }

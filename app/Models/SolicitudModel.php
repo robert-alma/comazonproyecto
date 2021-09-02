@@ -27,9 +27,15 @@ class SolicitudModel extends Model
             'comentario' => $request->comentario,
             'presupuesto' => $request->presupuesto ,
             'fecha_entrega'=>$request->fecha_entrega,
+            'fl_estado'=>'Enviado',
         );
         $this->fill($dataSolicitud);
         $this->save();
 
+    }
+    public function solicitudAtendida($id){
+
+        $this->fl_estado='Atendida';
+        $this->save();
     }
 }

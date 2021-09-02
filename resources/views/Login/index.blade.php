@@ -3,6 +3,13 @@
 
 @section('content')
 
+<h3>
+    Usuario: cliente Contraseña: secret
+</h3>
+<br>
+<h3>
+    Usuario: ejecutivo Contraseña: secret
+</h3>
 
 <div class="container ">
     <div class="row m-5 justify-content-center align-items-center">

@@ -32,7 +32,7 @@ class CreateCotizacionesTable extends Migration
             $table->string('precio');
             $table->string('descuento');
             $table->string('total');
-            $table->string('foto');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }
