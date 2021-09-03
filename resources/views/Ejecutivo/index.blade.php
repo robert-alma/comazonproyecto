@@ -8,7 +8,7 @@
             <div class="col-lg-12">
                 <h4>Listado de Solicitudes</h4>
                 <div class="table-responsive">
-                    <table id="mytable" class="table table-bordred table-striped">
+                    <table id="mytable" class="table table-bordred table-striped" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -40,4 +40,9 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+        $('#mytable').DataTable();
+        } );
+    </script>
 @endsection
