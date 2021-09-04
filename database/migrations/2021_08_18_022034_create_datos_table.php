@@ -35,6 +35,7 @@ class CreateDatosTable extends Migration
             $table->dateTime('fecha_nacimiento');
             $table->string('direccion');
             $table->string('celular');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

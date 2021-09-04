@@ -18,7 +18,8 @@ class DatoModel extends Model
                             'apellido_materno',
                             'fecha_nacimiento',
                             'direccion',
-                            'celular'];
+                            'celular',
+                            'foto',];
     protected $attributes = [
         'ubigeo_id'=>1,
     ];
@@ -55,9 +56,12 @@ class DatoModel extends Model
             'fecha_nacimiento' => $request->fecha_nacimiento,
             'direccion' => $request->direccion,
             'celular' => $request->celular,
+            'foto' => $request->foto,
         );
+
         $this->fill($dataDato);
         $this->save();
 
     }
+
 }

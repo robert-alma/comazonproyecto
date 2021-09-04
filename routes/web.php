@@ -48,7 +48,7 @@ Route::group(['namespace' => 'Login'], function () {
 
 });
 
-Route::group(['namespace' => 'Cliente'], function () {
+Route::group(['namespace' => 'Cliente','middleware'=>'cliente'], function () {
 
     #Vista Dashboard
     Route::get('/cliente/dashboard', 'ClienteController@index')->name('cliente.index');
@@ -62,7 +62,7 @@ Route::group(['namespace' => 'Cliente'], function () {
     Route::get('/cliente/solicitar/{id}/rechazar', 'ClienteController@rechazarsolicitud')->name('cliente.rechazarsolicitud');
 });
 
-Route::group(['namespace' => 'Ejecutivo'], function () {
+Route::group(['namespace' => 'Ejecutivo','middleware'=>'ejecutivo'], function () {
 
     #Vista Dashboard
     Route::get('/ejecutivo/dashboard', 'EjecutivoController@index')->name('ejecutivo.index');

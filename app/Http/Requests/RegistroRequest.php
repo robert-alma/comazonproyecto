@@ -40,6 +40,7 @@ class RegistroRequest extends FormRequest
             'direccion' => 'required|string',
             'celular' => 'required|regex:/^([0-9\s\-\+(\)]*)$/',
             'ubigeo_id'=> 'required|exists:ubigeos,id',
+            'foto'=>'nullable',
         ];
     }
 

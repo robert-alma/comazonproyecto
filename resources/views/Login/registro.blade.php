@@ -8,7 +8,7 @@
 
 
     <div class="container">
-        <form action="{{ route('registro') }}" method="post">
+        <form action="{{ route('registro') }}" method="post" enctype="multipart/form-data">
             @csrf
             <label class="m-1" for="perfil_id">Tipo de Perfil</label>
             <select name="perfil_id" id="perfil_id">
@@ -44,9 +44,6 @@
             @foreach ($errors->get('repassword') as $message)
                 {{ $message }}
             @endforeach
-            <br>
-            <br>
-
             <br>
             <label class="m-1" for="sexo_id">Sexo</label>
             <select name="sexo_id" id="sexo_id">
@@ -132,7 +129,12 @@
             @foreach ($errors->get('ubigeo_id') as $message)
                 {{ $message }}
             @endforeach
-
+            <br>
+            <label class="m-1" for="foto">Foto de Perfil</label>
+            <input type="file" name="foto" id="foto" value="{{ old('foto') }}">
+            @foreach ($errors->get('foto') as $message)
+                {{ $message }}
+            @endforeach
 
             <input type="submit" value="Guardar Datos">
         </form>

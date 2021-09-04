@@ -8,6 +8,7 @@ use App\Models\DatoModel;
 use App\Models\ClienteModel;
 use App\Models\EjecutivoModel;
 use App\Models\UsuarioModel;
+use GuzzleHttp\Psr7\Request;
 
 class RegistroController extends Controller
 {
@@ -18,6 +19,12 @@ class RegistroController extends Controller
 
     public function RegistrarUsuario(RegistroRequest $request){
 
+        if ($request->perfil_id==1) {
+            $request->foto=$request->file('foto')->store('img/perfiles/cliente');
+        }
+        if ($request->perfil==2){
+            $request->foto=$request->file('foto')->store('img/perfiles/ejecutivo');
+        }
         $usuario= new UsuarioModel;
         $usuario->CrearUsuario($request);
 
@@ -29,6 +36,8 @@ class RegistroController extends Controller
 
         $cliente=new EjecutivoModel();
         $cliente->CrearEjecutivo($request,$usuario);
+
+
 
 
         return redirect()->route('login');

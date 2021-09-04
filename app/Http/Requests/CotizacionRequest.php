@@ -29,7 +29,7 @@ class CotizacionRequest extends FormRequest
             'cantidad'=> 'required|alpha_num',
             'descuento'=> 'required|alpha_num',
             'total'=>'required|alpha_num',
-            'foto'=>'nullable|image|mimes:png,jpg,jpeg|max:2000',
+            'foto'=>'nullable|mimes:png,jpg,jpeg,pdf|max:2000',
 
         ];
     }

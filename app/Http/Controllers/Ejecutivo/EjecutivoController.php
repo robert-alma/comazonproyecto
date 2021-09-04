@@ -28,6 +28,7 @@ class EjecutivoController extends Controller
 
     public function registrarcotizacion(CotizacionRequest $request, $id){
 
+        $request->foto=$request->file('foto')->store('cotizaciones');
         $cotizacion= new CotizacionModel();
         $cotizacion->CrearCotizacion($request,$id);
         $solicitud = SolicitudModel::find($id);
