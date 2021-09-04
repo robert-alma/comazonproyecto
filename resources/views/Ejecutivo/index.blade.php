@@ -35,6 +35,18 @@
                                 </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Id</th>
+                                <th>Cliente</th>
+                                <th>Asunto</th>
+                                <th>Comentario</th>
+                                <th>Presupuesto</th>
+                                <th>Fecha</th>
+                                <th>Crear Cotización</th>
+                                <th>Ver Cliente</th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>

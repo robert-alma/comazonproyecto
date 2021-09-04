@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Login;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Mail\RecurperarContraseñaMail;
 use App\Models\UsuarioModel;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
+use Illuminate\Support\Facades\Mail;
 
 class LoginController extends Controller
 {
@@ -34,7 +35,7 @@ class LoginController extends Controller
 
     public function clave()
     {
-        return view('Login.Clave.index');
+        return view('Login.clave');
     }
 
     public function login(Request $request)
@@ -66,18 +67,41 @@ class LoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
-    public function recuperar(Request $request)
+    public function correoparanuevacontraseña(Request $request)
     {
         $correo = $request->correo;
-        $usuario = UsuarioModel::where('correo', '=', $correo)->get()[0];
+        $usuario = UsuarioModel::firstwhere('correo', $correo);
+        if ($usuario->correo) {
 
-        $pre = md5(md5(env('RECUPERAR')));
+        } else {
+            # code...
+        }
+
+        Mail::to($usuario->correo)->send(new RecurperarContraseñaMail($usuario));
+        /**$pre = md5(md5(env('RECUPERAR')));
         $pro = substr(str_shuffle($pre), 0, 10);
         $usuario->password = bcrypt($pro);
-        $usuario->update();
+        $usuario->update(); */
+
 
 
         return redirect('/')->withErrors(['status' => 'Credenciales enviadas, revisa tu correo.']);;
+    }
+
+    public function vistarestaurarcontraseña($id)
+    {
+
+        $usuario=UsuarioModel::find($id);
+        return view('Login.restaurarclave',compact('usuario'));
+    }
+
+    public function restaurarcontraseña(Request $request)
+    {
+
+        $usuario = UsuarioModel::find($request->id);
+        $usuario->nuevacontrasena($request->password);
+
+        return redirect(route('login'));
     }
 
     protected function authenticated(Request $request, $user)

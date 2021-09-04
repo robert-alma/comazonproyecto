@@ -23,10 +23,16 @@ Route::group(['namespace' => 'Login'], function () {
     Route::post('/login', 'LoginController@login')->name('validar');
 
     #Vista Recuperar Contraseña
-    Route::get('/clave', 'LoginController@clave')->name('clave');
+    Route::get('/clave', 'LoginController@clave')->name('vistacontraseña');
 
-    #Vista Recuperar Contraseña
-    Route::post('/recuperar', 'LoginController@recuperar')->name('recuperar');
+    #EnviarCorreo Nuevacontraseña
+    Route::post('/recuperar', 'LoginController@correoparanuevacontraseña')->name('recuperar');
+
+    #VistadeRestaurarcontraseña
+    Route::get('/recuperar/{id}', 'LoginController@vistarestaurarcontraseña')->name('vistarestaurar');
+
+    #RestaurarContraseña
+    Route::post('/restaurar', 'LoginController@restaurarcontraseña')->name('restaurar');
 
     #Cerrar Sesion
     Route::post('/logout', 'LoginController@logout')->name('logout');

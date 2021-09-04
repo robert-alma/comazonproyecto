@@ -40,6 +40,9 @@
                             <button class="btn btn-primary" type="submit"><a class="text-light" href="{{route('vistaregistro')}}">Registrarse</a></button>
                         </div>
                     </div>
+                    <div>
+                        <a href="{{route('vistacontraseña')}}"> ¿Olvidaste tu contraseña?</a>
+                    </div>
                 </form>
             </div>
 

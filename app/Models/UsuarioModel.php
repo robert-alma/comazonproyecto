@@ -36,6 +36,12 @@ class UsuarioModel extends Authenticatable
 
     }
 
+    public function nuevacontrasena($password){
+
+        $this->password=bcrypt($password);
+        $this->update();
+    }
+
     public function setSession($role)
     {
         if ($role->flestado == 1) {
