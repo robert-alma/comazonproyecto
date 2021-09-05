@@ -1,8 +1,3 @@
-@extends('Login.Templates.layout')
-@section('titulo',"Login")
-
-@section('content')
-
 <h3>
     Usuario: cliente Contraseña: secret
 </h3>
@@ -18,37 +13,35 @@
                 <h1 class="text-center">Login General</h1>
             </div>
             <div>
-                <form  id="loginform" action="{{route('validar')}}" method="post">
+                <form id="loginform" action="{{ route('validar') }}" method="post">
                     @csrf
                     <div class="form-group">
                         <label class="form-label" for="usuario">Usuario</label>
-                        <input type="text" class="form-control" name="usuario"  id="usuario" value="{{old('usuario')}}">
+                        <input type="text" class="form-control" name="usuario" id="usuario"
+                            value="{{ old('usuario') }}">
                         <div id="emailHelp" class="form-text">Ingresa tu usuario</div>
                         @foreach ($errors->all() as $message)
-                        {{$message}}
+                            {{ $message }}
                         @endforeach
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="password">Contraseña</label>
-                        <input type="password" class="form-control" name="password"  id="password">
+                        <input type="password" class="form-control" name="password" id="password">
                     </div>
                     <div class="row p-1">
                         <div class="col-6 text-center ">
                             <button form="loginform" type="submit" class="btn btn-primary">Login</button>
                         </div>
                         <div class="col-6 text-center ">
-                            <button class="btn btn-primary" type="submit"><a class="text-light" href="{{route('vistaregistro')}}">Registrarse</a></button>
+                            <button class="btn btn-primary" type="submit"><a class="text-light"
+                                    href="{{ route('vistaregistro') }}">Registrarse</a></button>
                         </div>
                     </div>
                     <div>
-                        <a href="{{route('vistacontraseña')}}"> ¿Olvidaste tu contraseña?</a>
+                        <a href="{{ route('vistacontraseña') }}"> ¿Olvidaste tu contraseña?</a>
                     </div>
                 </form>
             </div>
-
         </div>
-
     </div>
- </div>
-
-@endsection
+</div>

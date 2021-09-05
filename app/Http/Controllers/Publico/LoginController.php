@@ -1,16 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Login;
+namespace App\Http\Controllers\Publico;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginRequest;
-use App\Mail\RecurperarContraseñaMail;
-use App\Models\UsuarioModel;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Mail;
 
 class LoginController extends Controller
 {
@@ -25,7 +21,8 @@ class LoginController extends Controller
 
     public function index()
     {
-        return view('Login.index');
+
+        return view('Publico.Login.index');
     }
 
     public function inicio()
@@ -33,18 +30,9 @@ class LoginController extends Controller
         return redirect(route('login'));
     }
 
-    public function clave()
-    {
-        return view('Login.clave');
-    }
-
     public function login(Request $request)
     {
-
         $this->validateLogin($request);
-
-
-
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
@@ -65,43 +53,6 @@ class LoginController extends Controller
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
-    }
-
-    public function correoparanuevacontraseña(Request $request)
-    {
-        $correo = $request->correo;
-        $usuario = UsuarioModel::firstwhere('correo', $correo);
-        if ($usuario->correo) {
-
-        } else {
-            # code...
-        }
-
-        Mail::to($usuario->correo)->send(new RecurperarContraseñaMail($usuario));
-        /**$pre = md5(md5(env('RECUPERAR')));
-        $pro = substr(str_shuffle($pre), 0, 10);
-        $usuario->password = bcrypt($pro);
-        $usuario->update(); */
-
-
-
-        return redirect('/')->withErrors(['status' => 'Credenciales enviadas, revisa tu correo.']);;
-    }
-
-    public function vistarestaurarcontraseña($id)
-    {
-
-        $usuario=UsuarioModel::find($id);
-        return view('Login.restaurarclave',compact('usuario'));
-    }
-
-    public function restaurarcontraseña(Request $request)
-    {
-
-        $usuario = UsuarioModel::find($request->id);
-        $usuario->nuevacontrasena($request->password);
-
-        return redirect(route('login'));
     }
 
     protected function authenticated(Request $request, $user)

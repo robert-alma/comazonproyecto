@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Login;
+namespace App\Http\Controllers\Publico;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegistroRequest;
@@ -12,12 +12,11 @@ use GuzzleHttp\Psr7\Request;
 
 class RegistroController extends Controller
 {
-    //
     public function index(){
-        return view('login.registro');
+        return view('Publico.Registro.index');
     }
 
-    public function RegistrarUsuario(RegistroRequest $request){
+    public function registrarUsuario(RegistroRequest $request){
 
         if ($request->perfil_id==1) {
             $request->foto=$request->file('foto')->store('img/perfiles/cliente');
@@ -36,10 +35,6 @@ class RegistroController extends Controller
 
         $cliente=new EjecutivoModel();
         $cliente->CrearEjecutivo($request,$usuario);
-
-
-
-
         return redirect()->route('login');
 
     }

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['namespace' => 'Login'], function () {
+Route::group(['namespace' => 'Publico'], function () {
 
     Route::get('/', 'LoginController@inicio')->name('inicio');
     #Vista Login
@@ -22,55 +22,62 @@ Route::group(['namespace' => 'Login'], function () {
     #Validar credenciales
     Route::post('/login', 'LoginController@login')->name('validar');
 
-    #Vista Recuperar Contraseña
-    Route::get('/clave', 'LoginController@clave')->name('vistacontraseña');
-
-    #EnviarCorreo Nuevacontraseña
-    Route::post('/recuperar', 'LoginController@correoparanuevacontraseña')->name('recuperar');
-
-    #VistadeRestaurarcontraseña
-    Route::get('/recuperar/{id}', 'LoginController@vistarestaurarcontraseña')->name('vistarestaurar');
-
-    #RestaurarContraseña
-    Route::post('/restaurar', 'LoginController@restaurarcontraseña')->name('restaurar');
+    #Bienvenido a tu dashboard
+    Route::get('/bienvenido','LoginController@bienvenido')->name('bienvenido');
 
     #Cerrar Sesion
     Route::post('/logout', 'LoginController@logout')->name('logout');
 
-    #Bienvenido a tu dashboard
-    Route::get('/bienvenido','LoginController@bienvenido')->name('bienvenido');
+    #Vista Recuperar Contraseña
+    Route::get('/clave', 'RecuperarClaveController@index')->name('vistacontraseña');
+
+    #EnviarCorreo Nuevacontraseña
+    Route::post('/recuperar', 'RecuperarClaveController@enviarCorreo')->name('recuperar');
+
+    #VistadeRestaurarcontraseña
+    Route::get('/recuperar/{id}', 'RecuperarClaveController@vistaNuevaContrasena')->name('vistarestaurar');
+
+    #RestaurarContraseña
+    Route::post('/restaurar', 'RecuperarClaveController@nuevaContrasena')->name('restaurar');
 
     #Vista Registro
     Route::get('/registro', 'RegistroController@index')->name('vistaregistro');
 
     #Registrar Usuario
-    Route::post('/registro', 'RegistroController@RegistrarUsuario')->name('registro');
+    Route::post('/registro', 'RegistroController@registrarUsuario')->name('registro');
 
 });
 
 Route::group(['namespace' => 'Cliente','middleware'=>'cliente'], function () {
 
     #Vista Dashboard
-    Route::get('/cliente/dashboard', 'ClienteController@index')->name('cliente.index');
+    Route::get('/cliente/dashboard', 'DashboardController@index')->name('cliente.index');
+
     #Vista Solicitud
-    Route::get('/cliente/solicitar', 'ClienteController@solicitud')->name('cliente.solicitud');
+    Route::get('/cliente/solicitar', 'SolicitudController@index')->name('cliente.solicitud');
+
     #Registrar Solicitud
-    Route::post('/cliente/solicitar', 'ClienteController@registrarsolicitud')->name('cliente.registrarsolicitud');
+    Route::post('/cliente/solicitar', 'SolicitudController@registrarSolicitud')->name('cliente.registrarsolicitud');
+
     #Aceptar Cotizacion
-    Route::get('/cliente/solicitar/{id}/aceptar', 'ClienteController@aceptarsolicitud')->name('cliente.aceptarsolicitud');
+    Route::get('/cliente/solicitar/{id}/aceptar', 'SolicitudController@aceptarSolicitud')->name('cliente.aceptarsolicitud');
+
     #Rechazar Cotizacion
-    Route::get('/cliente/solicitar/{id}/rechazar', 'ClienteController@rechazarsolicitud')->name('cliente.rechazarsolicitud');
+    Route::get('/cliente/solicitar/{id}/rechazar', 'SolicitudController@rechazarSolicitud')->name('cliente.rechazarsolicitud');
 });
 
 Route::group(['namespace' => 'Ejecutivo','middleware'=>'ejecutivo'], function () {
 
     #Vista Dashboard
-    Route::get('/ejecutivo/dashboard', 'EjecutivoController@index')->name('ejecutivo.index');
+    Route::get('/ejecutivo/dashboard', 'DashboardController@index')->name('ejecutivo.index');
+
     #Vista Cotización
-    Route::get('/ejecutivo/cotizar/{id}', 'EjecutivoController@cotizacion')->name('ejecutivo.cotizacion');
+    Route::get('/ejecutivo/cotizar/{id}', 'CotizacionController@index')->name('ejecutivo.cotizacion');
+
     #Registrar Cotización
-    Route::post('/ejecutivo/cotizar/{id}', 'EjecutivoController@registrarcotizacion')->name('ejecutivo.registrarcotizacion');
+    Route::post('/ejecutivo/cotizar/{id}', 'CotizacionController@registrarCotizacion')->name('ejecutivo.registrarcotizacion');
+
     #Ver Cliente Info
-    Route::get('/ejecutivo/cliente/solicitud/{id}', 'EjecutivoController@vistaclienteinfo')->name('ejecutivo.vercliente');
+    Route::get('/ejecutivo/cliente/solicitud/{id}', 'ClienteInfoController@index')->name('ejecutivo.vercliente');
 
 });

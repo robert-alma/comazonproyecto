@@ -10,23 +10,18 @@ use App\Models\DatoModel;
 use App\Models\SolicitudModel;
 use Illuminate\Http\Request;
 
-class EjecutivoController extends Controller
+class CotizacionController extends Controller
 {
-    public function index(){
-        $solicitudes['solicitudes']=SolicitudModel::where('fl_estado','Enviado')->get();
-        return view('Ejecutivo.index',$solicitudes);
-    }
-
-    public function cotizacion($id){
+    public function index($id){
 
         $solicitud=SolicitudModel::find($id);
         $cliente=ClienteModel::find($solicitud->cliente_id);
         $dato=DatoModel::firstwhere('usuario_id',$cliente->usuario_id);
 
-        return view('Ejecutivo.cotizacion',compact('solicitud','cliente','dato'));
+        return view('Ejecutivo.Cotizacion.index',compact('solicitud','cliente','dato'));
     }
 
-    public function registrarcotizacion(CotizacionRequest $request, $id){
+    public function registrarCotizacion(CotizacionRequest $request, $id){
 
         $request->foto=$request->file('foto')->store('cotizaciones');
         $cotizacion= new CotizacionModel();
@@ -35,13 +30,5 @@ class EjecutivoController extends Controller
         $solicitud->solicitudAtendida($id);
 
         return redirect(route('ejecutivo.index'));
-    }
-
-    public function vistaclienteinfo($id){
-
-        $solicitud=SolicitudModel::find($id);
-        $cliente=ClienteModel::find($solicitud->cliente_id);
-
-        return view('Ejecutivo.vistaclienteinfo',compact('cliente','solicitud'));
     }
 }
